@@ -1,5 +1,6 @@
-package com.yandrorb.gestion_citas.model;
+package com.yandrorb.gestion_citas.persona.model;
 
+import com.yandrorb.gestion_citas.usuario.model.Usuario;
 import jakarta.persistence.*;
 
 @MappedSuperclass

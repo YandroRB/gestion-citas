@@ -1,4 +1,4 @@
-package com.yandrorb.gestion_citas.Dto.request;
+package com.yandrorb.gestion_citas.usuario.DTO.request;
 
 import lombok.Data;
 

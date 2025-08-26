@@ -1,7 +1,7 @@
 package com.yandrorb.gestion_citas.config;
 
 import com.yandrorb.gestion_citas.security.filter.JwtAuthFilter;
-import com.yandrorb.gestion_citas.service.UserDetailServiceImp;
+import com.yandrorb.gestion_citas.security.service.UserDetailServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

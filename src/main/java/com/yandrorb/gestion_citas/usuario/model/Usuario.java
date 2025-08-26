@@ -1,6 +1,6 @@
-package com.yandrorb.gestion_citas.model;
+package com.yandrorb.gestion_citas.usuario.model;
 
-import com.yandrorb.gestion_citas.model.enums.Roles;
+import com.yandrorb.gestion_citas.usuario.model.enums.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

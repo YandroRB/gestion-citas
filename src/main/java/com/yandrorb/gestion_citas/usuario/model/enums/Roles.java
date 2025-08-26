@@ -1,4 +1,4 @@
-package com.yandrorb.gestion_citas.model.enums;
+package com.yandrorb.gestion_citas.usuario.model.enums;
 
 public enum Roles {
     DENTISTA,

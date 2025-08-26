@@ -1,5 +1,7 @@
-package com.yandrorb.gestion_citas.model;
+package com.yandrorb.gestion_citas.paciente.model;
 
+
+import com.yandrorb.gestion_citas.persona.model.Persona;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Recepcionista extends Persona {
+public class Paciente extends Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long indentificador;
+    private Long identificador;
 }

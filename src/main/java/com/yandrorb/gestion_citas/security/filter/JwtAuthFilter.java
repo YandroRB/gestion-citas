@@ -1,7 +1,7 @@
 package com.yandrorb.gestion_citas.security.filter;
 
 import com.yandrorb.gestion_citas.security.service.JWTService;
-import com.yandrorb.gestion_citas.service.UserDetailServiceImp;
+import com.yandrorb.gestion_citas.security.service.UserDetailServiceImp;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

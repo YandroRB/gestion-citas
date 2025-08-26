@@ -1,6 +1,6 @@
-package com.yandrorb.gestion_citas.service;
+package com.yandrorb.gestion_citas.security.service;
 
-import com.yandrorb.gestion_citas.repository.UsuarioRepository;
+import com.yandrorb.gestion_citas.usuario.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

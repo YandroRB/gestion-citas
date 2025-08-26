@@ -1,4 +1,4 @@
-package com.yandrorb.gestion_citas.controller;
+package com.yandrorb.gestion_citas.test.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

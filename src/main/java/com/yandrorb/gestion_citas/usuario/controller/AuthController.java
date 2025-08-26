@@ -1,8 +1,8 @@
-package com.yandrorb.gestion_citas.controller;
+package com.yandrorb.gestion_citas.usuario.controller;
 
-import com.yandrorb.gestion_citas.Dto.request.AuthRequest;
-import com.yandrorb.gestion_citas.model.Usuario;
-import com.yandrorb.gestion_citas.repository.UsuarioRepository;
+import com.yandrorb.gestion_citas.usuario.DTO.request.AuthRequest;
+import com.yandrorb.gestion_citas.usuario.model.Usuario;
+import com.yandrorb.gestion_citas.usuario.repository.UsuarioRepository;
 import com.yandrorb.gestion_citas.security.service.JWTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
