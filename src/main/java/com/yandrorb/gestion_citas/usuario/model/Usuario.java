@@ -20,8 +20,11 @@ public class Usuario implements UserDetails {
     @Column(nullable = false , unique = true )
     private String username;
     @Setter
-    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false , unique = true )
+    private String correo;
+
     @Enumerated(EnumType.STRING)
     private Roles rol;
 

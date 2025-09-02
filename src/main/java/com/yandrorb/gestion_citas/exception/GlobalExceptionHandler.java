@@ -11,6 +11,13 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(UsuarioExistente.class)
+    public ResponseEntity<Map<String, Object>> usuarioExistente(UsuarioExistente ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error","Usuario existente");
+        response.put("mensaje",ex.getMessage());
+        return new ResponseEntity<>(response,HttpStatus.CONFLICT);
+    }
     @ExceptionHandler(io.jsonwebtoken.ExpiredJwtException.class)
     public ResponseEntity<Map<String, Object>> handleExpiredJwt(io.jsonwebtoken.ExpiredJwtException ex) {
         Map<String, Object> body = new HashMap<>();
