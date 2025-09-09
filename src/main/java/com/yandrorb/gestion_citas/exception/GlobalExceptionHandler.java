@@ -18,6 +18,13 @@ public class GlobalExceptionHandler {
         response.put("mensaje",ex.getMessage());
         return new ResponseEntity<>(response,HttpStatus.CONFLICT);
     }
+    @ExceptionHandler(ValidacionException.class)
+    public ResponseEntity<Map<String, Object>> validacion(ValidacionException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error","Datos no validos");
+        response.put("mensaje",ex.getMessage());
+        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(io.jsonwebtoken.ExpiredJwtException.class)
     public ResponseEntity<Map<String, Object>> handleExpiredJwt(io.jsonwebtoken.ExpiredJwtException ex) {
         Map<String, Object> body = new HashMap<>();
