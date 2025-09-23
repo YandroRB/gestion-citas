@@ -25,7 +25,7 @@ public class UsuarioService {
     private final LimitadorServices limitadorServices;
 
     public Map<String,Object> actualizarCredenciales(ActualizarUsuarioRequest request, String username){
-        Usuario usuario= usuarioRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("No se ha encontrado el usuario"));
+        Usuario usuario= obtenerUsuario(username);
         if(!passwordEncoder.matches(request.getCurrentPassword(),usuario.getPassword())){
             throw new ValidacionException("La contraseña no coincide");
         }
@@ -63,5 +63,24 @@ public class UsuarioService {
         map.put("message","Se ha actualizado exitosamente los datos");
         map.put("requiresReauth",invalidToken);
         return map;
+    }
+
+    private Usuario obtenerUsuario(String username){
+        return usuarioRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("No se ha encontrado el usuario"));
+    }
+
+    public String desactivarUsuario(String username){
+        Usuario usuario= obtenerUsuario(username);
+        usuario.setEnabled(false);
+        usuarioRepository.save(usuario);
+        tokenBlackListService.invalidarTokenUsuario(username);
+        return "Se ha desactivado el usuario";
+    }
+
+    public String activarUsuario(String username){
+        Usuario usuario= obtenerUsuario(username);
+        usuario.setEnabled(true);
+        usuarioRepository.save(usuario);
+        return "Se ha activado el usuario";
     }
 }

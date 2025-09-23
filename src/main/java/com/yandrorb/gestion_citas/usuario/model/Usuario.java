@@ -25,6 +25,9 @@ public class Usuario implements UserDetails {
     @Column(nullable = false , unique = true )
     private String correo;
 
+    @Column(nullable = false)
+    private boolean enabled = true;
+
     @Enumerated(EnumType.STRING)
     private Roles rol;
 
@@ -56,6 +59,6 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() { return true;}
     @Override
-    public boolean isEnabled() { return true;}
+    public boolean isEnabled() { return this.enabled;}
 
 }
