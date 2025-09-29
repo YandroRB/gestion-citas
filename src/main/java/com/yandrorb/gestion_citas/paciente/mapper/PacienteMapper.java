@@ -8,6 +8,8 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(uses = UsuarioMapper.class)
 public interface PacienteMapper extends GenericMapper<Paciente, PacienteResponse> {
     PacienteMapper INSTANCE= Mappers.getMapper(PacienteMapper.class);
