@@ -5,6 +5,7 @@ import com.yandrorb.gestion_citas.usuario.serivce.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +24,12 @@ public class UsuarioController {
     }
 
     @PutMapping("/{username}/desactivar")
+    @PreAuthorize("hasRole('ROLE_RECEPCIONISTA')")
     public ResponseEntity<String> desactivarUsuario(@PathVariable String username) {
         return ResponseEntity.ok(usuarioService.desactivarUsuario(username));
     }
     @PutMapping("/{username}/activar")
+    @PreAuthorize("hasRole('ROLE_RECEPCIONISTA')")
     public ResponseEntity<String> activarUsuario(@PathVariable String username) {
         return ResponseEntity.ok(usuarioService.activarUsuario(username));
     }
