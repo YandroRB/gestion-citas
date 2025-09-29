@@ -6,10 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,5 +20,14 @@ public class UsuarioController {
     public ResponseEntity<Map<String,Object>> actualizarCredenciales(@Valid @RequestBody ActualizarUsuarioRequest request, Authentication authentication) {
         String username = authentication.getName();
         return ResponseEntity.ok(usuarioService.actualizarCredenciales(request, username));
+    }
+
+    @PutMapping("/{username}/desactivar")
+    public ResponseEntity<String> desactivarUsuario(@PathVariable String username) {
+        return ResponseEntity.ok(usuarioService.desactivarUsuario(username));
+    }
+    @PutMapping("/{username}/activar")
+    public ResponseEntity<String> activarUsuario(@PathVariable String username) {
+        return ResponseEntity.ok(usuarioService.activarUsuario(username));
     }
 }

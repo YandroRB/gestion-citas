@@ -2,11 +2,16 @@ package com.yandrorb.gestion_citas.paciente.service;
 
 import com.yandrorb.gestion_citas.exception.ValidacionException;
 import com.yandrorb.gestion_citas.paciente.DTO.request.ActualizarPacienteRequest;
+import com.yandrorb.gestion_citas.paciente.DTO.request.BusquedaPacienteRequest;
 import com.yandrorb.gestion_citas.paciente.DTO.response.PacienteResponse;
 import com.yandrorb.gestion_citas.paciente.mapper.PacienteMapper;
 import com.yandrorb.gestion_citas.paciente.model.Paciente;
 import com.yandrorb.gestion_citas.paciente.repository.PacienteRepository;
+import com.yandrorb.gestion_citas.paciente.specification.PacienteSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +43,12 @@ public class PacienteService {
         }
         Paciente datosActualizados=pacienteRepository.save(datos);
         return PacienteMapper.INSTANCE.toDto(datosActualizados);
+    }
+
+    public Page<PacienteResponse> buscarPaciente(BusquedaPacienteRequest criterio, Pageable pageable){
+        Specification<Paciente> spec= PacienteSpecification.criterios(criterio);
+        Page<Paciente> pacientes=pacienteRepository.findAll(spec,pageable);
+        return pacientes.map(PacienteMapper.INSTANCE::toDto);
     }
 
     private Paciente obtenerPaciente(String username){
