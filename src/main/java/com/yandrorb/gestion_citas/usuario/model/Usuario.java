@@ -4,10 +4,13 @@ import com.yandrorb.gestion_citas.usuario.model.enums.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -29,13 +32,18 @@ public class Usuario implements UserDetails {
     private boolean enabled = true;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Roles rol;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(()->"ROLE_"+rol);
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(rol.getStringRole()));
+        if(rol.getPermisos()!=null&&!rol.getPermisos().isEmpty()){
+            rol.getPermisos().forEach(p->authorities.add(new SimpleGrantedAuthority(p)));
+        }
+        return authorities;
     }
-
     @Override
     public String getPassword() {
         return password;

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,16 +22,19 @@ public class PacienteController {
     private final PacienteService pacienteService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ver_datos_paciente')")
     public ResponseEntity<PacienteResponse> verDatosPaciente(Authentication authentication) {
         String nombre = authentication.getName();
         return ResponseEntity.ok(pacienteService.obtenerDatosPciente(nombre));
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('editar_datos_paciente')")
     public ResponseEntity<PacienteResponse> actualizarDatosPaciente(@RequestBody ActualizarPacienteRequest request, Authentication authentication) {
         String nombre = authentication.getName();
         return ResponseEntity.ok(pacienteService.actualizarDatosPaciente(nombre, request));
     }
     @GetMapping("/buscar")
+    @PreAuthorize("hasRole('ROLE_RECEPCIONISTA')")
     public ResponseEntity<Page<PacienteResponse>> buscarPacientes(
             @RequestParam(required = false) String cedula,
             @RequestParam(required = false) String nombre,
